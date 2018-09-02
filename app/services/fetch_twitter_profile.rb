@@ -33,23 +33,24 @@ class FetchTwitterProfile
 
   def create_profile!
     begin
-      profile = instance.user(username)
+      user = instance.user(username)
 
-      profile_params =
+      user_params =
         {
-          name: profile.name,
-          username: profile.screen_name,
-          user_id: profile.id,
-          location: profile.location,
-          language: profile.lang,
-          image_path: profile.profile_image_url_https,
-          description: profile.description
+          name: user.name,
+          username: user.screen_name,
+          user_id: user.id,
+          location: user.location,
+          language: user.lang,
+          image_path: user.profile_image_url_https,
+          description: user.description
         }
 
-      twitter_profile.assign_attributes profile_params
+      twitter_profile.assign_attributes user_params
       twitter_profile.save
 
       self.success = true
+      GetWatsonPersonalities.new(instance, twitter_profile).perfom!
     rescue Twitter::Error::NotFound
 
     end
