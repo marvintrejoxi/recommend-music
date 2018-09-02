@@ -1,0 +1,8 @@
+.container
+  .row
+    .col-12
+      h1 BUSCA TU PERFIL DE TWITTER
+    .col-12
+      = simple_form_for resource, as: :resource, url: twitter_profiles_path do |f|
+        = f.input :username
+        = f.submit
