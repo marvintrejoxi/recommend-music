@@ -3,7 +3,7 @@ class TwitterProfilesController < ApplicationController
   respond_to :html
 
   helper_method :resource
-  helper_method :personalities
+  helper_method :watson_personalities
 
   def create
     service = FetchTwitterProfile.new(params_resources[:username], resource)
@@ -29,8 +29,8 @@ class TwitterProfilesController < ApplicationController
       end
   end
 
-  def personalities
-    @personalities ||= resource.try(:watson_personalities)
+  def watson_personalities
+    @watson_personalities ||= resource.try(:watson_personalities).only_dominants.order_desc.limit(3)
   end
 
   def params_resources

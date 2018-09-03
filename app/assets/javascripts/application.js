@@ -24,10 +24,10 @@
 $(document).on('turbolinks:load', function(){
 
   $('#modal-default').iziModal({
-    fullscreen: true,
+    fullscreen: false,
     openFullscreen: true,
     closeOnEscape: false,
-    closeButton: false,
+    closeButton: false
   });
   $('#modal-default').iziModal('open');
 
@@ -35,9 +35,10 @@ $(document).on('turbolinks:load', function(){
   $('#modal-alert').iziModal({
     headerColor: '#d43838',
     // width: 400,
-    timeout: 2000,
+    timeout: 5000,
     pauseOnHover: true,
     timeoutProgressbar: true,
+    bottom: 0
     // attached: 'bottom'
   });
 });

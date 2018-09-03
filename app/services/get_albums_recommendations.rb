@@ -55,7 +55,7 @@ class GetAlbumsRecommendations
           album_url: recommendation['url'],
           artist_name: recommendation['artist']['name'],
           artist_url: recommendation['artist']['url'],
-          album_image: recommendation['image'][3],
+          album_image: recommendation['image'][3]["#text"],
           genre: tag
         }
       LastFmRecommendation.create(params_recomendation)

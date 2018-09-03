@@ -15,4 +15,13 @@
  */
 
 @import 'bootstrap';
-@import 'iziModal.min'
+@import 'iziModal.min';
+
+a {
+  text-decoration: none !important;
+}
+
+.card-deck {
+  height: 300px;
+  margin-bottom: 2em;
+}

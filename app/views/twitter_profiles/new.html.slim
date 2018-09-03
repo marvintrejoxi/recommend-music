@@ -1,16 +1,15 @@
-
-div id="modal-default"
-  .container
-    .row
-      .col-12
-        h1 BUSCA TU PERFIL DE TWITTER
-      .col-12
+= render partial: 'shared/header'
+.container
+  .row.justify-content-center
+    .col-6
+      .jumbotron
         = simple_form_for resource, as: :resource, url: twitter_profiles_path do |f|
-          = f.input :username
-          = f.submit
+          = f.input :username, label: false, class: 'form-control', placeholder: "Username"
+          .text-center
+            = f.submit "Search twitter profile", class: 'btn btn-primary'
 
 - if flash[:notice].present?
-  div id="modal-alert" data-izimodal-title=flash[:notice] data-izimodal-subtitle=""
+  div id="modal-alert" data-izimodal-title="Please check the following information" data-izimodal-subtitle=flash[:notice]
   javascript:
     $(document).on("turbolinks:load", function(){
       $('#modal-alert').iziModal('open');

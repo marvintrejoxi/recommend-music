@@ -1,0 +1,20 @@
+= render partial: 'shared/header'
+.container
+  .row
+    - unless twitter_profiles.blank?
+      - twitter_profiles.each do |twitter_profile|
+        .col-3
+          = link_to twitter_profile_path(twitter_profile) do
+            .card-deck
+              .card
+                .text-center
+                  = image_tag twitter_profile.image_path, class: 'img-fluid', width: "100"
+                .card-body
+                  h5.card-title
+                    = "@#{twitter_profile.username}"
+                  p.card-text
+                    = twitter_profile.description
+                .card-footer
+                  small.text-muted
+                    = "Created at: "
+                    = l(twitter_profile.created_at, format: '%B, %d %Y')

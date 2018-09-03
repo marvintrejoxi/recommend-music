@@ -1,0 +1,10 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+  = link_to root_path, class: 'navbar-brand' do
+    = "Search profile"
+  #navbarNavAltMarkup.collapse.navbar-collapse
+    .navbar-nav
+      - unless twitter_profiles.blank?
+        = link_to twitter_profiles_path, class: 'nav-item nav-link active' do
+          = 'All profiles'
+br
+br

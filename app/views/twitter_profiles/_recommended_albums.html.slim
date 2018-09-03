@@ -1,0 +1,23 @@
+div id="accordion#{index}" class='accordion'
+  .card
+    div id="heading#{index}" class='card-header'
+      h5.mb-0
+        button.btn.btn-link aria-controls="collapse#{index}" aria-expanded="true" data-target="#collapse#{index}" data-toggle="collapse" type="button"
+          = "Recommendations"
+    div id="collapse#{index}" class='collapse' aria-labelledby="heading#{index}" data-parent="#accordion#{index}"
+      .card-body
+        - unless watson_personality.last_fm_recommendations.blank?
+          table.table
+            thead
+              tr
+                th= "Album"
+                th= "Artist"
+            tbody
+              - watson_personality.last_fm_recommendations.limit(5).each do |recommendation|
+                tr
+                  td
+                    = link_to recommendation.album_url, target: '_blank' do
+                      = "#{recommendation.album_name} (#{recommendation.genre})"
+                  td
+                    = link_to recommendation.artist_url, target: '_blank' do
+                      = recommendation.artist_name
