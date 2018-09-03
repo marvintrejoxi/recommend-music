@@ -48,8 +48,9 @@ class FetchTwitterProfile
 
       twitter_profile.assign_attributes user_params
       if twitter_profile.save
-        self.success = true
         GetWatsonPersonalities.new(instance, twitter_profile).perfom!
+        GetAlbumsRecommendations.new(twitter_profile).perfom!
+        self.success = true
       end
 
     rescue Twitter::Error::NotFound

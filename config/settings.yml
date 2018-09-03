@@ -7,4 +7,8 @@ twitter:
 watson:
   user: 1efbefa4-ada7-4502-928f-b920f394afa2
   password: 0aE4EBxawPlY
-  number_of_tweets: 100
+  number_of_tweets: 150
+
+last_fm:
+  api_key: 8ebc6e4d8002970df5798bc38dd3dae2
+  secret: 6a9aeec16a75ba2ff9bd161ee14e8610
