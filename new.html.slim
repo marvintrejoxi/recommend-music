@@ -1,0 +1,18 @@
+= render partial: 'shared/header'
+.container
+  .row.justify-content-center
+    .col-6
+      .jumbotron
+        h4= "Enter your twitter account to know your personalities, and from them see musical recommendations"
+        br
+        = simple_form_for resource, as: :resource, url: twitter_profiles_path do |f|
+          = f.input :username, label: false, class: 'form-control', placeholder: "Username"
+          .text-center
+            = f.submit "Search twitter profile", class: 'btn btn-primary'
+
+- if flash[:notice].present?
+  div id="modal-alert" data-izimodal-title="Please check the following information" data-izimodal-subtitle=flash[:notice]
+  javascript:
+    $(document).on("turbolinks:load", function(){
+      $('#modal-alert').iziModal('open');
+    });
