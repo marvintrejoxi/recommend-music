@@ -47,12 +47,17 @@ class FetchTwitterProfile
         }
 
       twitter_profile.assign_attributes user_params
-      twitter_profile.save
+      if twitter_profile.save
+        self.success = true
+        GetWatsonPersonalities.new(instance, twitter_profile).perfom!
+      end
 
-      self.success = true
-      GetWatsonPersonalities.new(instance, twitter_profile).perfom!
     rescue Twitter::Error::NotFound
-
+      unless username.blank?
+        twitter_profile.errors.add(:username, :username_no_found, message: "no found")
+      else
+        twitter_profile.errors.add(:username, :blank)
+      end
     end
   end
 

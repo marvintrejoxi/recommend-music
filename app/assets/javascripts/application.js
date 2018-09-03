@@ -13,8 +13,31 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
-//= require jquery3
+//= require jquery
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap
+//= require iziModal.min
+//= require_tree .
+
+
+$(document).on('turbolinks:load', function(){
+
+  $('#modal-default').iziModal({
+    fullscreen: true,
+    openFullscreen: true,
+    closeOnEscape: false,
+    closeButton: false,
+  });
+  $('#modal-default').iziModal('open');
+
+
+  $('#modal-alert').iziModal({
+    headerColor: '#d43838',
+    // width: 400,
+    timeout: 2000,
+    pauseOnHover: true,
+    timeoutProgressbar: true,
+    // attached: 'bottom'
+  });
+});

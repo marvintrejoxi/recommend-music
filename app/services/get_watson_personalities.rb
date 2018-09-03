@@ -32,7 +32,12 @@ class GetWatsonPersonalities
   end
 
   def valid_personalities
-    @valid_personalities ||= personalities[:personality].select{ |personality| personality[:raw_score] > 0.5 }
+    @valid_personalities ||=
+      unless personalities.blank?
+        personalities[:personality].select{ |personality| personality[:raw_score] > 0.5 }
+      else
+        []
+      end
   end
 
   def watson_default_personalities

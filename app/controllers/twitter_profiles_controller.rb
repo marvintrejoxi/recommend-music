@@ -10,6 +10,7 @@ class TwitterProfilesController < ApplicationController
     service.perfom!
 
     unless service.success?
+      flash[:notice] = resource.errors.full_messages.to_sentence
       redirect_to root_path
     else
       respond_with resource, location: twitter_profile_path(service.twitter_profile.id)
@@ -21,11 +22,8 @@ class TwitterProfilesController < ApplicationController
   def resource
     @resource ||=
       case action_name
-      when 'new'
+      when 'new', 'create'
         TwitterProfile.new
-      when 'create'
-        # before creating, I verify if it already exists, if it exists, only update it
-        TwitterProfile.where(username: params_resources[:username].capitalize).first_or_initialize
       when 'show'
         TwitterProfile.find(params[:id])
       end
